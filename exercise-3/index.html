@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assam Evictions: A Scrollytelling Investigation</title>
+  <style>
+    :root {
+      --bg: #071018;
+      --panel: rgba(7, 13, 20, 0.78);
+      --panel-strong: rgba(6, 10, 15, 0.92);
+      --text: #f3efe7;
+      --muted: #b5b0a6;
+      --line: rgba(255, 244, 221, 0.12);
+      --accent-2: #f8c95d;
+      --danger: #ff6a4d;
+      --font-display: Georgia, "Times New Roman", serif;
+      --font-body: "Segoe UI", Tahoma, sans-serif;
+      --scene-a: radial-gradient(circle at 20% 20%, rgba(240, 91, 61, 0.22), transparent 35%), radial-gradient(circle at 80% 35%, rgba(248, 201, 93, 0.14), transparent 30%), linear-gradient(180deg, #09121b 0%, #050a10 100%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+    a { color: inherit; }
+    .page {
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 14rem), linear-gradient(180deg, #061019 0%, #04070b 100%);
+    }
+    .scene {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background: var(--scene-a);
+      transition: background 700ms ease;
+    }
+    .scene::before, .scene::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .scene::before {
+      background: linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(180deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 6rem 6rem;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.65));
+      opacity: 0.3;
+    }
+    .scene::after { background: radial-gradient(circle at center, transparent 0 30%, rgba(0, 0, 0, 0.45) 75%, rgba(0, 0, 0, 0.82) 100%); }
+    .scene-inner {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      width: min(1200px, calc(100vw - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+    }
+    .scene-kicker {
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-size: 0.7rem;
+      margin-top: 0.35rem;
+    }
+    .scene-title {
+      margin: 0.45rem 0 0;
+      max-width: 10ch;
+      font: 700 clamp(2.8rem, 6vw, 6rem) / 0.95 var(--font-display);
+      text-wrap: balance;
+    }
+    .scene-deck {
+      max-width: 36rem;
+      color: rgba(243, 239, 231, 0.8);
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      line-height: 1.5;
+      margin-top: 1rem;
+    }
+    .scene-meta {
+      position: absolute;
+      right: 0;
+      top: 2rem;
+      width: min(18rem, 38vw);
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--line);
+      background: rgba(4, 8, 13, 0.55);
+      backdrop-filter: blur(10px);
+    }
+    .scene-meta-label {
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .scene-meta-value {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .scene-meta-copy {
+      margin: 0;
+      color: rgba(243, 239, 231, 0.72);
+      line-height: 1.45;
+      font-size: 0.92rem;
+    }
+    .viz { position: absolute; inset: 0; }
+    .bubble-field, .timeline-field, .bars-field, .gavel-field, .conflict-field, .map-field, .shelter-field {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(0.985);
+      transition: opacity 650ms ease, transform 650ms ease;
+    }
+    .scene[data-active="0"] .bubble-field,
+    .scene[data-active="1"] .timeline-field,
+    .scene[data-active="2"] .bars-field,
+    .scene[data-active="3"] .gavel-field,
+    .scene[data-active="4"] .conflict-field,
+    .scene[data-active="5"] .map-field,
+    .scene[data-active="6"] .shelter-field {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: rgba(255, 247, 235, 0.9);
+      border: 1px solid rgba(255,255,255,0.1);
+      background: radial-gradient(circle at 30% 30%, rgba(248, 201, 93, 0.35), rgba(240, 91, 61, 0.09) 45%, rgba(4,8,13,0.15) 100%);
+      box-shadow: 0 0 50px rgba(240, 91, 61, 0.1);
+    }
+    .bubble span {
+      display: block;
+      text-align: center;
+      font-weight: 700;
+      font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+    }
+    .bubble small {
+      display: block;
+      margin-top: 0.2rem;
+      color: rgba(243, 239, 231, 0.68);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .stat-line {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    }
+    .year-chip {
+      position: absolute;
+      left: 9%;
+      font: 700 0.82rem/1 var(--font-body);
+      color: rgba(255,255,255,0.58);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .timeline-bar {
+      position: absolute;
+      bottom: 18%;
+      width: 10%;
+      background: linear-gradient(180deg, rgba(255, 106, 77, 0.92), rgba(248, 201, 93, 0.2));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 30px rgba(240, 91, 61, 0.16);
+    }
+    .timeline-bar span, .bars-column span {
+      position: absolute;
+      bottom: calc(100% + 0.5rem);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.72);
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .bars-grid {
+      position: absolute;
+      inset: 20% 10% 18%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      align-items: end;
+    }
+    .bars-column {
+      position: relative;
+      min-height: 12rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .bars-fill {
+      position: absolute;
+      bottom: 0;
+      left: 18%;
+      width: 64%;
+      border-radius: 999px 999px 0 0;
+      background: linear-gradient(180deg, rgba(119, 210, 200, 0.95), rgba(119, 210, 200, 0.18));
+      box-shadow: 0 0 30px rgba(119, 210, 200, 0.12);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .bars-fill b {
+      position: absolute;
+      bottom: calc(100% + 0.65rem);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(1rem, 1.6vw, 1.3rem);
+      color: var(--text);
+    }
+    .gavel-lines {
+      position: absolute;
+      inset: 18% 10%;
+      display: grid;
+      align-content: center;
+      gap: 1rem;
+    }
+    .gavel-rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.32) 15%, rgba(255,255,255,0.08) 85%, transparent 100%);
+      position: relative;
+    }
+    .gavel-rule::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      top: -0.9rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+    }
+    .gavel-word {
+      position: absolute;
+      right: 10%;
+      bottom: 15%;
+      font: 700 clamp(3rem, 9vw, 8rem) / 0.9 var(--font-display);
+      text-align: right;
+      color: rgba(255, 244, 221, 0.1);
+      letter-spacing: 0.02em;
+    }
+    .conflict-field::before {
+      content: "";
+      position: absolute;
+      inset: 17% 16% 20%;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(90deg, rgba(240, 91, 61, 0.16) 0 48%, rgba(119, 210, 200, 0.16) 52% 100%);
+      transform: skewY(-6deg);
+    }
+    .conflict-tag {
+      position: absolute;
+      max-width: 16rem;
+      padding: 0.8rem 0.95rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(6, 10, 15, 0.75);
+      font-size: 0.92rem;
+      line-height: 1.4;
+    }
+    .conflict-tag strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+    .map-grid { position: absolute; inset: 18% 12% 18%; }
+    .map-node {
+      position: absolute;
+      width: 0.95rem;
+      height: 0.95rem;
+      border-radius: 50%;
+      background: var(--danger);
+      box-shadow: 0 0 0 0.45rem rgba(255, 106, 77, 0.14), 0 0 25px rgba(255, 106, 77, 0.22);
+    }
+    .map-node::after {
+      content: attr(data-label);
+      position: absolute;
+      top: 1.2rem;
+      left: 0;
+      white-space: nowrap;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.76);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .map-arc {
+      position: absolute;
+      border-top: 1px dashed rgba(248, 201, 93, 0.42);
+      transform-origin: left center;
+    }
+    .shelter-stack {
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: 13%;
+      height: 52%;
+      display: flex;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+    .shelter {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      clip-path: polygon(50% 0, 100% 35%, 100% 100%, 0 100%, 0 35%);
+    }
+    .shelter::before {
+      content: "";
+      position: absolute;
+      inset: 12% 12% 18%;
+      border-top: 1px solid rgba(248, 201, 93, 0.18);
+      border-bottom: 1px solid rgba(248, 201, 93, 0.08);
+    }
+    .shelter-copy {
+      position: absolute;
+      left: 10%;
+      top: 18%;
+      max-width: 22rem;
+      font: 700 clamp(2.2rem, 5vw, 4rem) / 1 var(--font-display);
+      color: rgba(255, 247, 235, 0.13);
+    }
+    .intro {
+      position: absolute;
+      left: 0;
+      bottom: 2rem;
+      max-width: 30rem;
+      color: rgba(243, 239, 231, 0.64);
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+    .story {
+      position: relative;
+      z-index: 2;
+      width: min(1200px, calc(100vw - 2rem));
+      margin: -100vh auto 0;
+      padding-bottom: 20vh;
+    }
+    .section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 4rem 0;
+    }
+    .card {
+      width: min(34rem, 100%);
+      padding: 1.35rem 1.35rem 1.1rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: 0 1.2rem 4rem rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(14px);
+    }
+    .card-index {
+      display: inline-block;
+      margin-bottom: 0.7rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+    .card h2 {
+      margin: 0 0 0.7rem;
+      font: 700 clamp(1.85rem, 3vw, 2.75rem) / 1.02 var(--font-display);
+      text-wrap: balance;
+    }
+    .card p {
+      margin: 0 0 0.85rem;
+      color: rgba(243, 239, 231, 0.88);
+      line-height: 1.62;
+      font-size: 1rem;
+    }
+    .card p:last-of-type { margin-bottom: 1rem; }
+    .card footer {
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--line);
+      color: rgba(243, 239, 231, 0.62);
+      font-size: 0.8rem;
+      line-height: 1.55;
+    }
+    .card footer strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: rgba(243, 239, 231, 0.84);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: 0.68rem;
+    }
+    .card footer a {
+      color: #f1d48b;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+    .ending {
+      min-height: 70vh;
+      display: grid;
+      place-items: end start;
+      padding: 0 0 3rem;
+    }
+    .ending-card {
+      width: min(42rem, 100%);
+      padding: 1.3rem;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+    }
+    .ending-card h3 {
+      margin: 0 0 0.6rem;
+      font: 700 clamp(1.5rem, 2.5vw, 2.2rem) / 1.05 var(--font-display);
+    }
+    .ending-card p {
+      margin: 0;
+      color: rgba(243, 239, 231, 0.78);
+      line-height: 1.6;
+    }
+    @media (max-width: 900px) {
+      .scene-inner, .story { width: min(100vw - 1.25rem, 42rem); }
+      .scene-meta {
+        top: auto;
+        right: auto;
+        left: 0;
+        bottom: 5.5rem;
+        width: min(18rem, 100%);
+      }
+      .scene-title {
+        max-width: 9ch;
+        margin-top: 0.55rem;
+      }
+      .scene-deck {
+        max-width: 28rem;
+        margin-top: 0.9rem;
+      }
+      .intro { display: none; }
+    }
+    @media (max-width: 640px) {
+      .scene-inner { padding-top: 1.2rem; }
+      .story { margin-top: -100vh; }
+      .section {
+        align-items: flex-end;
+        padding: 2rem 0 6rem;
+      }
+      .card { padding: 1.1rem 1rem; }
+      .scene-meta {
+        position: absolute;
+        bottom: 1.2rem;
+      }
+      .bars-grid, .gavel-lines, .map-grid { inset-inline: 6%; }
+      .conflict-tag {
+        max-width: 12rem;
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="scene" id="scene" data-active="0">
+      <div class="scene-inner">
+        <div class="scene-kicker" id="scene-kicker">Assam / Forced Evictions</div>
+        <h1 class="scene-title" id="scene-title">Homes erased at state scale</h1>
+        <p class="scene-deck" id="scene-deck">The investigation traces demolitions from Darrang to Goalpara: mass displacement, legal defiance, and families pushed into roadside shelters.</p>
+        <aside class="scene-meta">
+          <div class="scene-meta-label" id="scene-meta-label">Scale</div>
+          <div class="scene-meta-value" id="scene-meta-value">22,000+</div>
+          <p class="scene-meta-copy" id="scene-meta-copy">Homes demolished across at least 33 documented operations between 2021 and 2026.</p>
+        </aside>
+        <div class="viz">
+          <div class="bubble-field">
+            <div class="bubble" style="width: 12rem; height: 12rem; left: 14%; top: 25%;"><div><span>100,000+</span><small>people displaced</small></div></div>
+            <div class="bubble" style="width: 8rem; height: 8rem; left: 7%; top: 58%;"><div><span>33</span><small>operations</small></div></div>
+            <div class="bubble" style="width: 10rem; height: 10rem; left: 43%; top: 48%;"><div><span>22,000+</span><small>homes</small></div></div>
+            <div class="bubble" style="width: 14rem; height: 14rem; right: 12%; top: 20%;"><div><span>2021-26</span><small>campaign window</small></div></div>
+            <div class="bubble" style="width: 7rem; height: 7rem; right: 23%; top: 62%;"><div><span>7</span><small>deaths listed</small></div></div>
+          </div>
+          <div class="timeline-field">
+            <div class="stat-line" style="top: 24%;"></div>
+            <div class="stat-line" style="top: 46%;"></div>
+            <div class="stat-line" style="top: 68%;"></div>
+            <div class="year-chip" style="top: 22%;">2021</div>
+            <div class="year-chip" style="top: 44%;">2024</div>
+            <div class="year-chip" style="top: 66%;">2025-26</div>
+            <div class="timeline-bar" style="left: 20%; height: 18%;"><span>4 ops</span></div>
+            <div class="timeline-bar" style="left: 39%; height: 28%;"><span>court orders</span></div>
+            <div class="timeline-bar" style="left: 58%; height: 54%;"><span>11 ops in 2025</span></div>
+            <div class="timeline-bar" style="left: 77%; height: 62%;"><span>5 lakh bigha pledge</span></div>
+          </div>
+          <div class="bars-field">
+            <div class="bars-grid">
+              <div class="bars-column"><span>Government claim</span><div class="bars-fill" style="height: 46%;"><b>1.5 lakh</b></div></div>
+              <div class="bars-column"><span>Campaign promise</span><div class="bars-fill" style="height: 78%; background: linear-gradient(180deg, rgba(240, 91, 61, 0.95), rgba(240, 91, 61, 0.18));"><b>5 lakh</b></div></div>
+              <div class="bars-column"><span>Darrang zone</span><div class="bars-fill" style="height: 42%; background: linear-gradient(180deg, rgba(248, 201, 93, 0.95), rgba(248, 201, 93, 0.18));"><b>8,000+</b></div></div>
+            </div>
+          </div>
+          <div class="gavel-field">
+            <div class="gavel-lines">
+              <div class="gavel-rule" data-label="Sep 17 2024: nationwide halt"></div>
+              <div class="gavel-rule" data-label="Nov 13 2024: 15-day notice rule"></div>
+              <div class="gavel-rule" data-label="Jul 2025: Goalpara protected"></div>
+              <div class="gavel-rule" data-label="Feb 10 2026: Assam forest framework"></div>
+              <div class="gavel-rule" data-label="Feb 21 2026: dignity order for displaced families"></div>
+            </div>
+            <div class="gavel-word">due<br>process</div>
+          </div>
+          <div class="conflict-field">
+            <div class="conflict-tag" style="left: 14%; top: 22%;"><strong>Court</strong>Notice, hearing, speaking order, 15 days to respond.</div>
+            <div class="conflict-tag" style="right: 12%; top: 34%;"><strong>State</strong>Government and reserve forest exemptions used to keep drives moving.</div>
+            <div class="conflict-tag" style="left: 24%; bottom: 18%;"><strong>Pattern</strong>Goalpara saw June, July, and November 2025 drives despite live litigation.</div>
+          </div>
+          <div class="map-field">
+            <div class="map-grid">
+              <div class="map-node" data-label="Darrang" style="left: 56%; top: 20%;"></div>
+              <div class="map-node" data-label="Goalpara" style="left: 27%; top: 48%;"></div>
+              <div class="map-node" data-label="Dhubri" style="left: 12%; top: 64%;"></div>
+              <div class="map-node" data-label="Golaghat" style="left: 71%; top: 44%;"></div>
+              <div class="map-node" data-label="Sonitpur" style="left: 63%; top: 31%;"></div>
+              <div class="map-arc" style="left: 27%; top: 48%; width: 31%; transform: rotate(-28deg);"></div>
+              <div class="map-arc" style="left: 56%; top: 20%; width: 13%; transform: rotate(60deg);"></div>
+              <div class="map-arc" style="left: 12%; top: 64%; width: 19%; transform: rotate(-24deg);"></div>
+            </div>
+          </div>
+          <div class="shelter-field">
+            <div class="shelter-copy">After the bulldozers, the state leaves tarpaulin and uncertainty.</div>
+            <div class="shelter-stack">
+              <div class="shelter" style="height: 54%;"></div>
+              <div class="shelter" style="height: 68%;"></div>
+              <div class="shelter" style="height: 48%;"></div>
+              <div class="shelter" style="height: 76%;"></div>
+              <div class="shelter" style="height: 62%;"></div>
+            </div>
+          </div>
+        </div>
+        <p class="intro">Scroll through the cards. The fixed scene changes when each section crosses the viewport, shifting from scale to power, legal evidence, and the remains of displacement.</p>
+      </div>
+    </div>
+    <main class="story">
+      <section class="section step" data-step="0" data-kicker="Scale of the crisis" data-title="A campaign measured in destroyed homes" data-deck="The numbers are large enough to abstract the violence. The point of the opening frame is to force the scale back into view." data-meta-label="Homes demolished" data-meta-value="22,000+" data-meta-copy="The article draft says at least 33 operations razed more than 22,000 homes and displaced more than 100,000 people across Assam between 2021 and 2026." data-scene="radial-gradient(circle at 18% 22%, rgba(240, 91, 61, 0.25), transparent 34%), radial-gradient(circle at 75% 28%, rgba(248, 201, 93, 0.18), transparent 28%), linear-gradient(180deg, #09121b 0%, #04070b 100%);">
+        <article class="card">
+          <span class="card-index">01</span>
+          <h2>More than a local dispute</h2>
+          <p>The reporting in <em>Cleared</em> describes at least 33 eviction operations in Assam between 2021 and 2026, with more than 22,000 homes demolished and over 100,000 people displaced. What happened in Dhalpur in September 2021 was not the exception; it became the template.</p>
+          <p>That scale matters because it turns each bulldozer drive into part of a statewide system, not a one-off administrative act. The investigation centers that system before it narrows to the officials, court orders, and families inside it.</p>
+          <footer><strong>Sources</strong>[article.md](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/article.md) and finding `F11-C1` in [findings.json](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/findings.json).</footer>
+        </article>
+      </section>
+      <section class="section step" data-step="1" data-kicker="Acceleration" data-title="The tempo rises after 2021" data-deck="The timeline compresses quickly: deadly violence in Darrang, repeated drives in Goalpara, and a 2025 spike that makes dispossession feel routine." data-meta-label="Busiest year" data-meta-value="2025" data-meta-copy="The draft identifies 2025 as the busiest year, with 11 documented operations and more than 40,000 people displaced." data-scene="radial-gradient(circle at 22% 20%, rgba(255, 106, 77, 0.18), transparent 32%), linear-gradient(120deg, rgba(248, 201, 93, 0.08), transparent 45%), linear-gradient(180deg, #08111a 0%, #070a11 100%);">
+        <article class="card">
+          <span class="card-index">02</span>
+          <h2>Evictions become a governing rhythm</h2>
+          <p>The article draft marks 2025 as the busiest year in the dataset, with 11 documented operations and more than 40,000 people displaced. In the research file, Goalpara alone saw three large drives in June, July, and November 2025, while Darrang returned to the same Dhalpur-Sipajhar landscape that had already become synonymous with lethal force.</p>
+          <p>That rhythm is the story's first clue about intent. The pace suggests a program that is expanding, not a bureaucracy reluctantly enforcing isolated orders.</p>
+          <footer><strong>Sources</strong>[article.md](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/article.md), findings `F6-C1`, `F7-C1`, and `F11-C1` in [findings.json](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/findings.json).</footer>
+        </article>
+      </section>
+      <section class="section step" data-step="2" data-kicker="Political ownership" data-title="The campaign is publicly claimed" data-deck="The most important evidence here is not hidden. It is delivered from the top of the state, in speeches, slogans, and a bulldozer turned into campaign theater." data-meta-label="Election pledge" data-meta-value="5 lakh bighas" data-meta-copy="On March 1, 2026, Chief Minister Himanta Biswa Sarma pledged to clear 5 lakh bighas if the BJP wins the state election, after claiming 1.5 lakh bighas had already been freed." data-scene="radial-gradient(circle at 78% 20%, rgba(240, 91, 61, 0.26), transparent 28%), radial-gradient(circle at 28% 62%, rgba(119, 210, 200, 0.15), transparent 26%), linear-gradient(180deg, #0a121a 0%, #06080d 100%);">
+        <article class="card">
+          <span class="card-index">03</span>
+          <h2>Who is behind it is not ambiguous</h2>
+          <p>Finding `F9-C1` places Chief Minister Himanta Biswa Sarma at the center of the eviction campaign in his own words. On March 1, 2026, he stood before decorated bulldozers and promised that another 5 lakh bighas would be cleared after the election.</p>
+          <p>The research file treats that spectacle as more than rhetoric because it aligns with the broader arc in the article draft: evictions framed as a political message about who belongs in Assam and who can be removed from it.</p>
+          <footer><strong>Sources</strong>Finding `F9-C1` in [findings.json](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/findings.json), supported by the framing in [article.md](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/article.md).</footer>
+        </article>
+      </section>
+      <section class="section step" data-step="3" data-kicker="What the evidence shows" data-title="Courts kept spelling out due process" data-deck="The legal record is not vague. Across 2024 to 2026, courts repeatedly set notice requirements, speaking orders, relief obligations, and status quo protections." data-meta-label="Legal pivot" data-meta-value="15 days" data-meta-copy="The Supreme Court's November 13, 2024 judgment required a 15-day show-cause notice, a chance to respond, and a speaking order before demolition." data-scene="radial-gradient(circle at 16% 30%, rgba(119, 210, 200, 0.16), transparent 30%), radial-gradient(circle at 84% 72%, rgba(248, 201, 93, 0.12), transparent 28%), linear-gradient(180deg, #09131d 0%, #05070c 100%);">
+        <article class="card">
+          <span class="card-index">04</span>
+          <h2>The record of warning signs is extensive</h2>
+          <p>Finding `F1-C1` says the Supreme Court's November 13, 2024 judgment formalized a nationwide demolition framework: prior notice, an opportunity to respond, and a written order. Finding `F2-C1` adds an Assam-specific framework on February 10, 2026 for forest evictions, including committee review and a mandatory 15-day notice period.</p>
+          <p>In Goalpara, the Gauhati High Court also issued targeted protective orders in July and August 2025, covering shelter, food, and the instruction that certain petitioners could not be evicted without leave of the court. By this point, the state could not plausibly claim the rules were unclear.</p>
+          <footer><strong>Sources</strong>Findings `F1-C1`, `F2-C1`, `F3-C1`, and `F4-C1` in [findings.json](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/findings.json).</footer>
+        </article>
+      </section>
+      <section class="section step" data-step="4" data-kicker="Legal gray zone" data-title="Demolitions continue beside live protections" data-deck="The central tension in the research is not whether safeguards exist. It is whether the state treats reserve forest and government land as a route around them." data-meta-label="Goalpara drives" data-meta-value="3 in 2025" data-meta-copy="The synthesis finding counts June, July, and November 2025 eviction drives in Goalpara, totaling roughly 2,350 families displaced amid ongoing litigation." data-scene="radial-gradient(circle at 50% 20%, rgba(255, 106, 77, 0.22), transparent 26%), linear-gradient(90deg, rgba(240, 91, 61, 0.08), rgba(119, 210, 200, 0.08)), linear-gradient(180deg, #0b141d 0%, #05080d 100%);">
+        <article class="card">
+          <span class="card-index">05</span>
+          <h2>A pattern forms in the gap between law and enforcement</h2>
+          <p>Finding `F5-C1` says the Supreme Court issued contempt notices to senior Assam officials over Goalpara demolitions that allegedly ignored the November 2024 guidelines, including a drive where residents received only two days notice. Finding `F11-C1` then connects the dots: legal protections kept arriving, but the demolitions kept resuming.</p>
+          <p>The state's counterargument appears in the same finding. Officials maintain that evictions from government land and reserve forest land sit outside at least some of those protections, creating the gray zone in which bulldozers keep moving.</p>
+          <footer><strong>Sources</strong>Findings `F5-C1` and `F11-C1` in [findings.json](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/findings.json).</footer>
+        </article>
+      </section>
+      <section class="section step" data-step="5" data-kicker="Darrang" data-title="The district that keeps returning" data-deck="Darrang is both origin point and warning. The same landscape that erupted in 2021 reappears in the 2025 research as an expanded project, not a closed chapter." data-meta-label="Darrang drive" data-meta-value="167 families" data-meta-copy="On October 15, 2025, officials launched a fresh drive in No. 3 Dhalpur, Sipajhar, evicting 167 families from 203 structures on 250 bighas." data-scene="radial-gradient(circle at 64% 18%, rgba(248, 201, 93, 0.18), transparent 25%), radial-gradient(circle at 22% 58%, rgba(240, 91, 61, 0.18), transparent 30%), linear-gradient(180deg, #0a1118 0%, #05070b 100%);">
+        <article class="card">
+          <span class="card-index">06</span>
+          <h2>Darrang remains the visual shorthand for the crisis</h2>
+          <p>The article draft opens with the September 23, 2021 killings in Dhalpur, where police fired on a crowd and a government photographer was filmed stomping on a dying man. Finding `F6-C1` shows that the same Dhalpur-Sipajhar zone was targeted again on October 15, 2025 as part of the Garukhuti project, displacing another 167 families.</p>
+          <p>The research notes an important limit: it does not locate a Darrang-specific stay order, even though the broader pattern of court warnings is clear elsewhere. That gap matters, and the page keeps it visible rather than overstating what the files prove.</p>
+          <footer><strong>Sources</strong>[article.md](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/article.md), finding `F6-C1`, and the gap notes in [findings.json](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/findings.json).</footer>
+        </article>
+      </section>
+      <section class="section step" data-step="6" data-kicker="Human cost" data-title="The story ends in tarpaulin, hunger, and exposed roadsides" data-deck="The final section turns away from legal language and back to the lived result: shelters improvised from bamboo and plastic, and courts ordering water and food after the homes are already gone." data-meta-label="Emergency relief" data-meta-value="Feb 21, 2026" data-meta-copy="The Gauhati High Court ordered potable water, sanitation, medical care, and food support for families displaced from Goalpara's Hashila Beel area." data-scene="radial-gradient(circle at 22% 18%, rgba(119, 210, 200, 0.15), transparent 28%), radial-gradient(circle at 80% 70%, rgba(255, 106, 77, 0.18), transparent 30%), linear-gradient(180deg, #0a131a 0%, #05070b 100%);">
+        <article class="card">
+          <span class="card-index">07</span>
+          <h2>The bulldozer does not finish the job, it begins another crisis</h2>
+          <p>The draft reports families living under tarpaulin and bamboo on roadsides, riverbanks, and forest edges after their homes were destroyed. Finding `F8-C1` confirms that by February 21, 2026, the Gauhati High Court was ordering the state to provide water, sanitation, medical care, and food grains to already-displaced families in Goalpara.</p>
+          <p>That sequence is the investigation's final argument. The state demolishes first, litigates later, and relief enters only after people have already been pushed into open-air survival.</p>
+          <footer><strong>Sources</strong>[article.md](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/article.md) and finding `F8-C1` in [findings.json](/C:/Users/oleg.tokar_20minuten/documents/cli/exercise-3/findings.json).</footer>
+        </article>
+      </section>
+      <section class="ending">
+        <div class="ending-card">
+          <h3>Method note</h3>
+          <p>This page only uses material present in the local research files. Where the findings document identifies uncertainty, especially around the missing OCCRP article and the lack of a Darrang-specific stay order, the narrative preserves that uncertainty instead of smoothing it away.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const scene = document.getElementById("scene");
+    const sceneKicker = document.getElementById("scene-kicker");
+    const sceneTitle = document.getElementById("scene-title");
+    const sceneDeck = document.getElementById("scene-deck");
+    const sceneMetaLabel = document.getElementById("scene-meta-label");
+    const sceneMetaValue = document.getElementById("scene-meta-value");
+    const sceneMetaCopy = document.getElementById("scene-meta-copy");
+    const steps = document.querySelectorAll(".step");
+    function activateStep(step) {
+      scene.dataset.active = step.dataset.step;
+      scene.style.background = step.dataset.scene;
+      sceneKicker.textContent = step.dataset.kicker;
+      sceneTitle.textContent = step.dataset.title;
+      sceneDeck.textContent = step.dataset.deck;
+      sceneMetaLabel.textContent = step.dataset.metaLabel;
+      sceneMetaValue.textContent = step.dataset.metaValue;
+      sceneMetaCopy.textContent = step.dataset.metaCopy;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) activateStep(entry.target);
+      });
+    }, {
+      threshold: 0.55,
+      rootMargin: "-10% 0px -20% 0px"
+    });
+    steps.forEach((step) => observer.observe(step));
+    if (steps[0]) activateStep(steps[0]);
+  </script>
+</body>
+</html>
