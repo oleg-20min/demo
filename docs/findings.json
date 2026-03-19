@@ -1,0 +1,283 @@
+{
+  "project": "assam",
+  "lead": "coJournalist alert: New OCCRP article detected - Assam authorities resume demolitions in Darrang district despite court stay order",
+  "investigated_at": "2026-03-02T19:30:00Z",
+  "cycle": 1,
+  "questions": [
+    "What court stay order exists regarding Assam/Darrang demolitions?",
+    "What demolitions have resumed in Darrang and when?",
+    "Is there documented evidence of demolitions occurring after the stay order?",
+    "What does the OCCRP article report and with what sourcing?",
+    "What is the official government response?"
+  ],
+  "findings": [
+    {
+      "id": "F1-C1",
+      "claim": "The Supreme Court of India issued a nationwide order on September 17, 2024, directing that no demolition shall take place anywhere across the country without seeking leave of the Court. The order was issued by Justices B.R. Gavai and K.V. Viswanathan. On November 13, 2024, this was formalized into a landmark judgment requiring 15-day show-cause notice, opportunity to respond, and a speaking order before any demolition.",
+      "evidence": "Supreme Court interim order dated 17.09.2024 in In Re: Directions in the Matter of Demolition of Structures. Final judgment 2024 INSC 866 dated 13.11.2024. Exceptions: encroachments on public roads, footpaths, railway lines, waterbodies, and court-ordered demolitions. The Court held that 'no person can be dispossessed without due process of law, guaranteed by a prior notice, opportunity to respond, and in accordance with Article 300A of the Constitution.'",
+      "sources": [
+        {
+          "url": "https://api.sci.gov.in/supremecourt/2022/12239/12239_2022_2_1501_57147_Judgement_13-Nov-2024.pdf",
+          "type": "court_filing",
+          "accessed": "2026-03-02"
+        },
+        {
+          "url": "https://sabrangindia.in/supreme-court-halts-nationwide-demolitions-through-interim-order-emphasising-the-ethos-of-the-constitution/",
+          "type": "news",
+          "accessed": "2026-03-02"
+        },
+        {
+          "url": "https://www.drishtijudiciary.com/editorial/supreme-court-on-property-demolitions",
+          "type": "other",
+          "accessed": "2026-03-02"
+        }
+      ],
+      "confidence": "high",
+      "confidence_rationale": "Primary source is the Supreme Court judgment itself, widely reported and available in official records. The order text and its requirements are undisputed.",
+      "perspective": "legal"
+    },
+    {
+      "id": "F2-C1",
+      "claim": "On February 10, 2026, the Supreme Court in Abdul Khalek & Others v. State of Assam (Civil Appeal Nos. of 2026 @ SLP(C) Nos. 23647-23648 of 2025) established a mandatory procedural framework for evictions from Assam reserved forests. The framework requires: (1) committee review by forest and revenue officials, (2) notice to alleged occupants to present documentation, (3) scrutiny of evidence, (4) a speaking order, (5) a mandatory 15-day notice period to vacate after service, and (6) status quo protection until procedures are completed. Occupants in the Jamabandi Register or holding Forest Rights Act 2006 rights are exempt from eviction.",
+      "evidence": "Judgment by Justice Pamidighantam Sri Narasimha and Justice Alok Aradhe. The Court held: 'The Constitution does not envisage a choice between environmental protection and the rule of law.' This consolidated multiple civil appeals and writ petitions challenging eviction drives across Assam reserved forests including Doyang, South Nambar, Jamuna Madunga, Barpani, Lutumai, and Golaghat areas.",
+      "sources": [
+        {
+          "url": "https://lawyerenews.com/legal_detail/constitution-does-not-envisage-a-choice-between-environmental-protection-and-rule-of-law-supreme-court-lays-down-due-process-framework-for-eviction-from-assam-reserved-forests",
+          "type": "court_filing",
+          "accessed": "2026-03-02"
+        },
+        {
+          "url": "https://www.indialaw.in/blog/environment/sc-on-assam-forest-evictions-due-process-and-ecology/",
+          "type": "other",
+          "accessed": "2026-03-02"
+        }
+      ],
+      "confidence": "high",
+      "confidence_rationale": "Supreme Court judgment widely reported by multiple legal news outlets, with consistent detail on the procedural framework. Primary source judgment is publicly available.",
+      "perspective": "legal"
+    },
+    {
+      "id": "F3-C1",
+      "claim": "The Gauhati High Court in WP(C)/4581/2025 (Nilima Sultana and 219 Ors v. State of Assam and 10 Ors) issued a specific protection order on 13.08.2025 by Justice Sanjay Kumar Medhi stating: 'the petitioners shall not be evicted from their possession without taking leave of this Court.' The Court also ordered that APDCL shall not disconnect electricity. This was issued for 220 petitioners from Rakhyasini area villages in Goalpara district, after the Forest Department's own Standing Counsel admitted that 'though Section 6 of the Assam Forest Regulation Act, 1891 has been issued, however, till date no final declaration has been made' regarding Rakhyasini Reserve Forest.",
+      "evidence": "Primary source: Court order in WP(C)/4581/2025, pages 44-45 of the certified court document held in project files. 220 petitioners from villages Rakhyasini Garopara Part-I, Rakhyasini Jhar Part-I, Jhar Part-II, Dhoptolarakhyasini, Helpakhri in Goalpara. Respondents include State of Assam (Environment & Forest Dept), Principal Chief Conservator of Forest, Divisional Forest Officer (Goalpara), District Commissioner Goalpara, Circle Officer Matia, Harimura and Boladmari Char Gaon Panchayat secretaries, APDCL. Petitioner advocates: S.B. Laskar, A.S. Tapader, H.A. Laskar, D. Dutta.",
+      "sources": [
+        {
+          "url": "file:///investigations/assam/research/research/court/gauhati_high_court_wp4581_2025.pdf",
+          "type": "court_filing",
+          "accessed": "2026-03-02"
+        }
+      ],
+      "confidence": "high",
+      "confidence_rationale": "Primary court document in our possession, certified true copy. The order text is unambiguous: no eviction without court leave.",
+      "perspective": "legal"
+    },
+    {
+      "id": "F4-C1",
+      "claim": "The Gauhati High Court in WP(C)/3860/2025 (Abdul Barik and 193 Ors v. State of Assam) issued a protective order on 10.07.2025 by Justice Soumitra Saikia for 194 petitioners from village Ashudubi, Matia Revenue Circle, Goalpara district. The Court directed Forest Authorities to 'ensure that alternative shelter, adequate food, and accommodation are provided to the petitioners until further arrangements for their rehabilitation are made.' The order noted a dispute over whether petitioners' land (Dag Nos. 274, 253, 261) falls within Paikan Reserved Forest. The case references prior orders in WP(C) No. 8101/2017 (via Writ Appeal 333/2024, order 24.09.2024) and WP(C) No. 5033/2024 (order 01.10.2024) where a coordinate bench directed Forest Authorities to ascertain whether occupied lands are within Paikan Reserve Forest.",
+      "evidence": "Primary source: Court order in WP(C)/3860/2025, pages 21-23 of certified court document in project files. Application No. 624426, received 11/07/2025. Respondents include State of Assam (Environment & Forest Dept), Principal Chief Conservator of Forest, Addl. Principal Chief Conservator (Lower Assam Zone), Divisional Forest Officer (Goalpara), District Commissioner Goalpara, Circle Officer Matia. Petitioner advocates: S.B. Laskar, A.S. Tapader, H.A. Laskar, S.U. Choudhury. Respondent advocates: GA Assam, SC Forest.",
+      "sources": [
+        {
+          "url": "file:///investigations/assam/research/research/court/gauhati_high_court_wp3860_2025.pdf",
+          "type": "court_filing",
+          "accessed": "2026-03-02"
+        }
+      ],
+      "confidence": "high",
+      "confidence_rationale": "Primary court document in our possession, certified true copy dated 11/07/2025.",
+      "perspective": "legal"
+    },
+    {
+      "id": "F5-C1",
+      "claim": "The Supreme Court issued a contempt notice to Assam Chief Secretary Ravi Kota and other senior officials over demolitions in Goalpara district that violated the November 13, 2024 judgment guidelines. The June 16, 2025 demolition drive evicted 690 families from Hasilabeel village with only 2 days notice (notices issued June 13), and a second drive on July 12, 2025 evicted 1,080 families from Paikan Reserve Forest area. The contempt petition was filed by eight residents alleging 'wilful violation' of the Court's guidelines, including that authorities gave only 'common notices through announcements on a microphone rather than giving individual notices.' A bench led by CJI B.R. Gavai issued notices to the Chief Secretary and other officials.",
+      "evidence": "Contempt petition details reported by Scroll.in, LiveLaw, and Sentinel Assam. Advocate Sanjay Hegde represented petitioners. Officials named: Chief Secretary Ravi Kota, Principal Secretary Revenue & Disaster Management Gyanendra Dev Tripathi, Goalpara DC Khanindra Choudhury, Goalpara SP Nabaneet Mahanta. The Court cautioned that interim relief 'would not apply if the demolitions involved government land.'",
+      "sources": [
+        {
+          "url": "https://scroll.in/latest/1084856/supreme-court-agrees-to-hear-contempt-plea-against-demolitions-in-assams-goalpara",
+          "type": "news",
+          "accessed": "2026-03-02"
+        },
+        {
+          "url": "https://www.livelaw.in/top-stories/supreme-court-issues-notice-to-assam-chief-secretary-in-contempt-petition-over-demolitions-in-goalpara-district-298671",
+          "type": "news",
+          "accessed": "2026-03-02"
+        },
+        {
+          "url": "https://clarionindia.net/sc-issues-contempt-notice-to-assam-chief-secretary-for-demolition-drive-in-goalpara/",
+          "type": "news",
+          "accessed": "2026-03-02"
+        }
+      ],
+      "confidence": "high",
+      "confidence_rationale": "Multiple independent news sources (Scroll, LiveLaw, Clarion India, Sentinel Assam) report consistent facts about the contempt proceedings. LiveLaw is the authoritative Indian legal reporting outlet.",
+      "perspective": "legal"
+    },
+    {
+      "id": "F6-C1",
+      "claim": "A fresh eviction drive in Darrang district was launched on October 15, 2025, targeting No. 3 Dhalpur village in Sipajhar revenue circle. 167 families (approximately 700 people) were evicted from 203 structures on 250 bighas of government land as part of the Garukhuti Bohumukhi Krishi Prakalpa (GBKP) expansion. District Commissioner Parag Kumar Kakaty stated notices were served over one month prior and the eviction 'complied with recent Guwahati High Court guidelines.' This followed the larger pattern: previously 8,000 bighas had been cleared in Sipajhar with 2,166 families relocated since September 2021.",
+      "evidence": "Reported by Assam Tribune (primary), Sentinel Assam. DC Kakaty stated 'notices have been served to all the 167 families residing there more than one month ago. However, no petition has been received from them so far over any claim on the land.'",
+      "sources": [
+        {
+          "url": "https://assamtribune.com/assam/fresh-eviction-drive-in-darrang-to-free-250-bighas-of-encroached-govt-land-on-oct-15-1594482",
+          "type": "news",
+          "accessed": "2026-03-02"
+        },
+        {
+          "url": "https://www.sentinelassam.com/north-east-india-news/assam-news/darrang-fresh-eviction-drive-to-be-launched-at-gorukhuti-today",
+          "type": "news",
+          "accessed": "2026-03-02"
+        }
+      ],
+      "confidence": "high",
+      "confidence_rationale": "Multiple local news outlets report consistent details. District Commissioner is quoted directly. The Darrang eviction drive is a documented event.",
+      "perspective": "official"
+    },
+    {
+      "id": "F7-C1",
+      "claim": "On November 9-10, 2025, the Assam government resumed demolitions in Goalpara's Dahikata Reserve Forest, displacing 580 families from 153 hectares (1,140 bigha). This was the THIRD eviction drive in Goalpara since June 2025 (after June 16 [690 families] and July 12 [1,080 families]). Officials claimed compliance with 'Gauhati High Court directives.' However, affected residents noted that they possessed Aadhaar cards and land documents, and the government had previously provided them electricity lines, toilets, and other facilities.",
+      "evidence": "Scroll.in reported: 'around 70% of the residents had already moved out voluntarily.' Special Chief Secretary for Forests stated removing encroachments would 'reduce human-animal conflict' as the area falls within an elephant corridor. One resident countered: 'If we were encroachers, why did the government give us electricity lines, toilets and other facilities?'",
+      "sources": [
+        {
+          "url": "https://scroll.in/latest/1088404/assam-government-resumes-demolition-drive-in-goalpara-580-families-face-eviction",
+          "type": "news",
+          "accessed": "2026-03-02"
+        },
+        {
+          "url": "https://www.deccanherald.com/india/assam/assam-begins-eviction-in-forest-land-in-goalpara-bulldozers-demolish-houses-3792313",
+          "type": "news",
+          "accessed": "2026-03-02"
+        }
+      ],
+      "confidence": "high",
+      "confidence_rationale": "Multiple independent news outlets (Scroll, Deccan Herald) report consistent details. This is a documented event.",
+      "perspective": "affected_community"
+    },
+    {
+      "id": "F8-C1",
+      "claim": "On February 21, 2026, the Gauhati High Court (Justice Devashish Baruah) directed the Assam government to provide potable water, basic medical care, sanitation facilities, and food grains through fair price shops to families evicted from Goalpara's Hashila Beel area (June 16-18, 2025 evictions, 566 families displaced). The Court held that 'the right to life includes the right to live with dignity, access to potable water, sanitation and basic medical facilities.' The next hearing is set for March 11, 2026, with respondents required to file affidavits by March 9.",
+      "evidence": "Reported by India Today NE, The Federal, Sentinel Assam. The order was passed in response to a writ petition by 60 petitioners from the Hashila Beel area. The court invoked Article 21 protections and the National Food Security Act.",
+      "sources": [
+        {
+          "url": "https://www.indiatodayne.in/assam/story/gauhati-high-court-raps-assam-govt-orders-immediate-relief-for-goalpara-eviction-victims-1349582-2026-02-21",
+          "type": "news",
+          "accessed": "2026-03-02"
+        },
+        {
+          "url": "https://thefederal.com/category/states/north-east/assam/goalpara-evictions-gauhati-hc-asks-230960",
+          "type": "news",
+          "accessed": "2026-03-02"
+        }
+      ],
+      "confidence": "high",
+      "confidence_rationale": "Multiple independent news outlets with consistent reporting. Court order date and content align across sources.",
+      "perspective": "legal"
+    },
+    {
+      "id": "F9-C1",
+      "claim": "On March 1, 2026, CM Himanta Biswa Sarma publicly pledged to evict alleged encroachers from 5 lakh bighas (approximately 165,000 acres / 66,773 hectares) of land if the BJP wins the upcoming March-April 2026 assembly elections. During a 'Jan Ashirwad Yatra' at Jagiroad, he received a ceremonial 'bulldozer salute' from an open SUV before 10 bulldozers decorated with flower petals. He stated: 'Next time, five lakh bighas will be cleared of evictions. This is the message we have given to the people.' He added: 'No Bangladeshi infiltrator will live in peace in Assam.' His government claims to have already freed 1.5 lakh bighas (49,500 acres) during its current term.",
+      "evidence": "Reported by Tribune India, India Today NE, Northeast Today, NewKerala. Statement made at BJP's campaign rally at Jagiroad, ahead of 2026 assembly polls. On February 19, 2026 Sarma told the state assembly that 1.5 lakh bighas had been freed from encroachment over five years.",
+      "sources": [
+        {
+          "url": "https://www.tribuneindia.com/news/india/will-carry-out-eviction-in-5-lakh-bighas-of-land-after-assam-polls-cm-himanta-biswa-sarma/",
+          "type": "news",
+          "accessed": "2026-03-02"
+        },
+        {
+          "url": "https://www.indiatodayne.in/assam/story/will-carry-out-eviction-in-5-lakh-bighas-of-land-after-polls-assam-cm-1353424-2026-03-01",
+          "type": "news",
+          "accessed": "2026-03-02"
+        }
+      ],
+      "confidence": "high",
+      "confidence_rationale": "Direct quote from CM at a public rally, reported by multiple major outlets including Tribune India and India Today NE with video/photo evidence of the bulldozer salute.",
+      "perspective": "official"
+    },
+    {
+      "id": "F10-C1",
+      "claim": "The OCCRP article referenced in the coJournalist alert could not be located through extensive web searches. No OCCRP article specifically about Assam demolitions in Darrang district was found on occrp.org or in general web searches. The alert may reference an article not yet indexed, published under a different headline, or the alert may have misattributed the source. However, the underlying factual pattern (demolitions continuing despite court orders) is extensively documented by Indian media outlets and is substantiated by primary court documents in our possession.",
+      "evidence": "Searched: site:occrp.org + Assam, OCCRP + Assam + demolitions, OCCRP + India + bulldozer, OCCRP + Darrang. Zero results returned. OCCRP's main coverage areas are organized crime and corruption; they have limited India-specific reporting history. The alert pattern may represent a misidentification or the article may have been published very recently (same day) and not yet indexed.",
+      "sources": [],
+      "confidence": "low",
+      "confidence_rationale": "Unable to locate the specific article. The alert source (coJournalist) may have misidentified the publisher or the article may not yet be publicly available/indexed.",
+      "perspective": "independent_observer"
+    },
+    {
+      "id": "F11-C1",
+      "claim": "There is a documented pattern of the Assam government conducting demolition drives in temporal proximity to court protections, creating a legal grey area. The key tension is between: (a) Supreme Court's Nov 2024 nationwide demolition guidelines requiring 15-day notice and due process, (b) Supreme Court's Feb 2026 Assam-specific procedural framework requiring committee review and speaking orders, (c) Gauhati HC's specific protection orders in WP(C)/3860/2025 and WP(C)/4581/2025 for Goalpara petitioners, and (d) the Assam government's position that evictions from 'government land' and 'reserve forest land' are exempt from these protections. The government has repeatedly resumed demolitions in Goalpara despite ongoing litigation, filing three separate drives (June, July, November 2025) totaling approximately 2,350 families displaced.",
+      "evidence": "Timeline: SC interim order 17.09.2024 -> Sonapur contempt petition Sept 2024 -> SC Nov 2024 judgment -> GHC WP 3860/2025 order 10.07.2025 -> Goalpara June 16 drive (690 families) -> GHC WP 4581/2025 order 13.08.2025 -> SC contempt notice to Chief Secretary July 2025 -> Darrang Oct 2025 drive (167 families) -> Goalpara Nov 2025 drive (580 families) -> SC Abdul Khalek judgment 10.02.2026 -> GHC dignity order 21.02.2026 -> CM pledges 5 lakh bigha eviction 01.03.2026.",
+      "sources": [
+        {
+          "url": "https://m.thewire.in/article/communalism/supreme-court-himanta-assam-eviction-state",
+          "type": "news",
+          "accessed": "2026-03-02"
+        },
+        {
+          "url": "https://lawchakra.in/supreme-court/bulldozers-contempt-plea-assam-eviction/",
+          "type": "news",
+          "accessed": "2026-03-02"
+        }
+      ],
+      "confidence": "medium",
+      "confidence_rationale": "The individual events are each high-confidence and independently sourced. The characterization as a 'pattern' involves synthesis across events, which is analytically sound but interpretive. The government disputes it is violating court orders by arguing forest/government land exemptions.",
+      "perspective": "independent_observer"
+    }
+  ],
+  "connections": [
+    {
+      "from": "Supreme Court Nov 2024 judgment",
+      "to": "Goalpara June 2025 demolitions",
+      "relationship": "Alleged violation of mandatory 15-day notice requirement; only 2 days notice given via loudspeaker announcements",
+      "evidence": "Contempt petition filed in SC; notices issued June 13 for June 16 demolition (Scroll.in)"
+    },
+    {
+      "from": "GHC WP(C)/4581/2025 order (13.08.2025)",
+      "to": "Goalpara Nov 2025 demolitions (Dahikata Reserve Forest)",
+      "relationship": "The Aug 2025 order prohibits eviction of 220 Rakhyasini petitioners without court leave. The Nov 2025 drive targeted adjacent Dahikata Reserve Forest area. Whether any of the 220 protected petitioners were among the 580 evicted families requires field verification.",
+      "evidence": "Court order in WP 4581/2025 (para 8); Scroll.in Nov 2025 reporting"
+    },
+    {
+      "from": "CM Sarma",
+      "to": "Eviction drives across Assam",
+      "relationship": "Political direction from CMO. CM publicly champions demolitions as campaign platform, receiving 'bulldozer salute' and pledging to clear 5 lakh bighas post-election.",
+      "evidence": "Tribune India (01.03.2026), prior investigation finding F-004 re: internal communications suggesting political direction from CMO"
+    },
+    {
+      "from": "GHC WP(C)/3860/2025 (Ashudubi, Goalpara)",
+      "to": "GHC WP(C)/4581/2025 (Rakhyasini, Goalpara)",
+      "relationship": "Same advocate team (S.B. Laskar, A.S. Tapader, H.A. Laskar) representing petitioners in both cases. Both filed against same set of government respondents in Goalpara. Both involve disputed forest boundaries. Both secured protective orders.",
+      "evidence": "Court documents in project files"
+    },
+    {
+      "from": "SC Abdul Khalek judgment (10.02.2026)",
+      "to": "CM Sarma 5 lakh bigha pledge (01.03.2026)",
+      "relationship": "Just 19 days after the Supreme Court established mandatory procedural safeguards for Assam forest evictions, the CM publicly pledged a massive escalation of eviction drives. This suggests either confidence the procedural framework will not impede operations, or intent to proceed regardless.",
+      "evidence": "Lawyerenews.com (Feb 10 judgment); Tribune India (March 1 rally)"
+    },
+    {
+      "from": "Darrang Oct 2025 evictions",
+      "to": "Darrang Sept 2021 evictions",
+      "relationship": "Same geographic area (Dhalpur/Sipajhar/Gorukhuti). 2025 drive is expansion of the project that began with the violent 2021 evictions where 2 people were killed. Total of 8,000+ bighas now cleared and 2,166+ families displaced in this area alone since 2021.",
+      "evidence": "Assam Tribune (Oct 2025), prior investigation data"
+    }
+  ],
+  "gaps": [
+    "OCCRP ARTICLE NOT FOUND: The specific OCCRP article referenced in the coJournalist alert could not be located. This is a critical gap - the article may contain new evidence, on-the-ground reporting, or sourcing not available elsewhere. Need to verify whether the alert correctly identified OCCRP as the publisher.",
+    "DARRANG-SPECIFIC COURT STAY: No court stay order SPECIFIC to Darrang district was found. The court protections identified (WP 3860/2025, WP 4581/2025) cover Goalpara district. The alert's framing of 'Darrang demolitions despite court stay' may conflate Goalpara and Darrang, or there may be a Darrang-specific order not yet discovered.",
+    "TIMELINE OVERLAP VERIFICATION: While the pattern of demolitions continuing despite court orders is clear for Goalpara, verifying whether specific Darrang Oct 2025 demolitions violated the SC Nov 2024 guidelines requires confirmation that the 15-day notice and due process requirements were met. DC Kakaty claimed one-month notice was given.",
+    "ON-THE-GROUND STATUS (March 2026): No reporting found on whether demolitions have actually resumed in Darrang in February-March 2026 specifically. The most recent Darrang-specific event found is October 2025.",
+    "AFFECTED COMMUNITY TESTIMONY FROM DARRANG 2025: No direct quotes or testimony from families evicted in the Oct 2025 Darrang drive. All affected community perspective comes from Goalpara.",
+    "STATUS OF SC CONTEMPT PROCEEDINGS: The SC issued contempt notice to Chief Secretary and officials in July 2025. What is the current status of this case? Has it been heard? Were officials held in contempt?",
+    "COMPARISON OF PROTECTED vs EVICTED PETITIONERS: Whether any of the 220 petitioners protected under WP 4581/2025 were subsequently evicted in the Nov 2025 Dahikata drive requires cross-referencing petitioner lists with eviction records.",
+    "POLITICAL DIMENSION OF 2026 ELECTIONS: How do the upcoming March-April 2026 assembly elections affect the timing and scale of eviction drives? The CM's March 1 statement suggests evictions are a campaign platform.",
+    "SECOND GOVERNMENT SOURCE FOR CMO DIRECTION: Prior finding F-004 (low confidence) about political direction from CMO remains uncorroborated. The CM's public statements now provide additional evidence of political intent but not of specific internal directives."
+  ],
+  "next_steps": [
+    "PRIORITY 1: Verify the coJournalist alert - contact coJournalist operators to confirm the OCCRP article URL. If misidentified, determine the actual source. Check if article was published behind a paywall or subsequently removed.",
+    "PRIORITY 2: Search Gauhati High Court online portal (ghconline.gov.in) for any Darrang-specific writ petitions and stay orders filed in 2025-2026. The existing court documents are for Goalpara only.",
+    "PRIORITY 3: Field verification in Darrang - visit Dhalpur/Sipajhar to document: (a) current status of Oct 2025 eviction families, (b) whether any new eviction notices have been issued in 2026, (c) testimony from affected families about notice periods and process followed.",
+    "PRIORITY 4: Track SC contempt case status - check Supreme Court daily cause lists for hearing dates on the Goalpara contempt petition. Obtain any orders passed since the initial notice.",
+    "PRIORITY 5: Cross-reference WP 4581/2025 petitioner list (220 names, all from Rakhyasini area) against Nov 2025 Dahikata eviction records to determine if protected petitioners were subsequently evicted.",
+    "PRIORITY 6: Monitor March 11, 2026 Gauhati HC hearing on the Goalpara dignity order - respondent affidavits due March 9 could contain significant government admissions.",
+    "PRIORITY 7: Obtain satellite imagery of Dhalpur/Sipajhar for Oct-Nov 2025 to verify extent of demolitions through before/after comparison.",
+    "PRIORITY 8: RTI request to Darrang DC for complete eviction records (notices issued, families displaced, structures demolished, dates) for 2025-2026."
+  ]
+}
